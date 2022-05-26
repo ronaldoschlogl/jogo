@@ -6,6 +6,7 @@ public class ControlaInimigo : MonoBehaviour
 {
     public GameObject Jogador;
     public float Velocidade = 5;
+    public AudioClip SomZumbi;
 
 
     void Start()
@@ -47,5 +48,6 @@ public class ControlaInimigo : MonoBehaviour
     {
         int dano = Random.Range(10, 30);
         Jogador.GetComponent<ControlaJogador>().TomarDano(dano);
+        ControlaAudio.instancia.PlayOneShot(SomZumbi);
     }
 }

@@ -661,6 +661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jogador: {fileID: 0}
   Velocidade: 3
+  SomZumbi: {fileID: 8300000, guid: 569c854ee20dbce4693e67aa5048e283, type: 3}
 --- !u!54 &1474941864626860902
 Rigidbody:
   m_ObjectHideFlags: 0

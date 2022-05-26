@@ -11,7 +11,8 @@ public class ControlaJogador : MonoBehaviour
     private Vector3 direcao;
     public int Vida = 100;
     public ControlaInterface scriptControlaInterface;
-    
+    public AudioClip SomDano;
+
     void Start()
     {
         Time.timeScale = 1;
@@ -34,7 +35,7 @@ public class ControlaJogador : MonoBehaviour
             GetComponent<Animator>().SetBool("Movendo", false);
         }
 
-        if (Vida <= 0) ;
+        if (Vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -68,6 +69,8 @@ public class ControlaJogador : MonoBehaviour
     {
         Vida -= dano;
         scriptControlaInterface.AtualizarSliderVidaJogador();
+        ControlaAudio.instancia.PlayOneShot(SomDano);
+
         if (Vida <= 0)
         {
             Time.timeScale = 0;
