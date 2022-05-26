@@ -6,6 +6,7 @@ public class ControlaArma : MonoBehaviour
 {
     public GameObject Bala;
     public GameObject CanoDaArma;
+    public ParticleSystem Flash;
     void Start()
     {
         
@@ -15,6 +16,7 @@ public class ControlaArma : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
+            Flash.Play();
             Instantiate(Bala, CanoDaArma.transform.position, CanoDaArma.transform.rotation);
         }
     }

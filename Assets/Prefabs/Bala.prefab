@@ -113,7 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85e11cadb347f9c4f90d2ae6710f7e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Velocidade: 20
+  Velocidade: 30
 --- !u!54 &8810651411199097509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -180,8 +180,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.004184723
+        value: 0.5
         inSlope: 0
         outSlope: 0
         tangentMode: 0

@@ -160,7 +160,7 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Camada de Tiro
     m_StateMachine: {fileID: 3526005205964965503}
-    m_Mask: {fileID: 31900000, guid: 795c67cd46ad19e4daf86f6e842be050, type: 2}
+    m_Mask: {fileID: 31900000, guid: fdca1fe31d0801b48a2c75f9eaad94e5, type: 2}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -180,7 +180,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 8825279179404016485}
-    m_Position: {x: 340.04352, y: 82.60866, z: 0}
+    m_Position: {x: 340, y: 110, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -211,7 +211,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400024, guid: 6e4b26fde7f77c046bed3bb532de26f1, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: f34374cf4f9d90e4587056f1396f1b86, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
