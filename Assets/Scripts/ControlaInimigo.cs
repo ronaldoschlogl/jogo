@@ -16,11 +16,6 @@ public class ControlaInimigo : MonoBehaviour
         transform.GetChild(geraTipoZumbi).gameObject.SetActive(true);
     }
 
-    void Update()
-    {
-        
-    }
-
     void FixedUpdate()
     {
         float distancia = Vector3.Distance(transform.position, Jogador.transform.position);
