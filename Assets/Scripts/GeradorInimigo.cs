@@ -5,32 +5,58 @@ using UnityEngine;
 public class GeradorInimigo : MonoBehaviour
 {
     public GameObject Zumbi;
-    public GameObject Kiki;
-    public GameObject UnityChan;
-    public GameObject Arisa;
     float contadorTempo = 0;
     public float TempoGerarZumbi = 50;
-    int rInt = 0;
+    public LayerMask LayerZumbi;
+    private float distanciaGeracao = 3;
+    private float DistanciaDoJogadorParaGeracao = 20;
+    private GameObject Jogador;
 
+    private void Start() 
+    {
+        Jogador = GameObject.FindWithTag("Jogador");
+    }
 
-    // Update is called once per frame
     void Update()
     {
-        //int rnd = Random.Range(0,2);
-        int rnd = 1;
-
-        contadorTempo += (Time.deltaTime / 2);
-
-        if (contadorTempo >= TempoGerarZumbi)
+        if(Vector3.Distance(transform.position, Jogador.transform.position) > DistanciaDoJogadorParaGeracao)
         {
-            if (rnd == 1)
-            {
-                Instantiate(Zumbi, transform.position, transform.rotation);
-            }
-           
+            contadorTempo += (Time.deltaTime / 2);
 
-            contadorTempo = 0;
+            if (contadorTempo >= TempoGerarZumbi)
+            {
+                StartCoroutine(GerarNovoZumbi());
+                contadorTempo = 0;
+            }
+        }
+    }
+
+    IEnumerator GerarNovoZumbi()
+    {
+        Vector3 posicaoDeCriacao = AleatorizarPosicao();
+        Collider[] colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerZumbi);
+
+        while(colisores.Length > 0)
+        {
+            posicaoDeCriacao = AleatorizarPosicao();
+            colisores = Physics.OverlapSphere(posicaoDeCriacao, 1, LayerZumbi);
+            yield return null;
         }
 
+        Instantiate(Zumbi, posicaoDeCriacao, transform.rotation);
+    }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, distanciaGeracao);
+    }
+
+    Vector3 AleatorizarPosicao()
+    {
+        Vector3 posicao = Random.insideUnitSphere * distanciaGeracao;
+        posicao += transform.position;
+        posicao.y = 0;
+
+        return posicao;
     }
 }

@@ -5,17 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class ControlaJogador : MonoBehaviour
 {
-    public float velocidade = 10;
     public LayerMask MascaraChao;
     public GameObject GameOver;
     private Vector3 direcao;
-    public int Vida = 100;
     public ControlaInterface scriptControlaInterface;
     public AudioClip SomDano;
+
+
+    public Status statusPlayer = new Status();
 
     void Start()
     {
         Time.timeScale = 1;
+        statusPlayer = GetComponent<Status>();
     }
 
     void Update()
@@ -35,7 +37,7 @@ public class ControlaJogador : MonoBehaviour
             GetComponent<Animator>().SetBool("Movendo", false);
         }
 
-        if (Vida <= 0)
+        if (statusPlayer.Vida <= 0)
         {
             if (Input.GetButtonDown("Fire1"))
             {
@@ -47,7 +49,7 @@ public class ControlaJogador : MonoBehaviour
     void FixedUpdate()
     {
         GetComponent<Rigidbody>().MovePosition
-            (GetComponent<Rigidbody>().position + (direcao * velocidade * Time.deltaTime) * -1);
+            (GetComponent<Rigidbody>().position + (direcao * statusPlayer.Velocidade * Time.deltaTime) * -1);
 
         Ray raio = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -67,11 +69,11 @@ public class ControlaJogador : MonoBehaviour
 
     public void TomarDano(int dano)
     {
-        Vida -= dano;
+        statusPlayer.Vida -= dano;
         scriptControlaInterface.AtualizarSliderVidaJogador();
         ControlaAudio.instancia.PlayOneShot(SomDano);
 
-        if (Vida <= 0)
+        if (statusPlayer.Vida <= 0)
         {
             Time.timeScale = 0;
             GameOver.SetActive(true);

@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class ControlaBala : MonoBehaviour
 {
-    public float Velocidade = 30;
-    public AudioClip SomMorte;
+    //public float Speed = 30;
+    //public AudioClip SomMorte;
 
-    void FixedUpdate()
+    //void FixedUpdate()
+    //{
+    //    GetComponent<Rigidbody>().MovePosition(
+    //        GetComponent<Rigidbody>().position + transform.forward * Speed * Time.deltaTime * -1);
+    //}
+
+    //void OnTriggerEnter(Collider objetoDeColisao)
+    //{
+    //    if(objetoDeColisao.tag == "Inimigo")
+    //    {
+    //        Destroy(objetoDeColisao.gameObject);
+    //        ControlaAudio.instancia.PlayOneShot(SomMorte);
+    //    }
+
+    //    Destroy(gameObject);
+    //}
+
+    public float speed = 25;
+    public AudioClip SomMorte;
+    Rigidbody rb;
+
+    // Start is called before the first frame update
+    void Start()
     {
-        GetComponent<Rigidbody>().MovePosition(
-            GetComponent<Rigidbody>().position + transform.forward * Velocidade * Time.deltaTime * -1);
+        rb = GetComponent<Rigidbody>();
+        rb.velocity = transform.forward * speed;
     }
 
-    void OnTriggerEnter(Collider objetoDeColisao)
+    private void OnCollisionEnter(Collision collision)
     {
-        if(objetoDeColisao.tag == "Inimigo")
+        if (collision.gameObject.tag == "Inimigo")
         {
-            Destroy(objetoDeColisao.gameObject);
-            ControlaAudio.instancia.PlayOneShot(SomMorte);
+            collision.gameObject.GetComponent<ControlaInimigo>().TomarDano(1);
         }
-
         Destroy(gameObject);
     }
 }
